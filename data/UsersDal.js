@@ -1,5 +1,5 @@
 import { getColllectionUsers,getColllectionNotes } from "./users.js"
-import { insertOne,selectOneByPassword,selectOneByUserName,updateByUserName } from "./queries.js"
+import { insertOne,selectOneByPassword,selectOneByUserName,selectOneId} from "./queries.js"
 
 const collection = await getColllectionUsers()
 
@@ -17,6 +17,11 @@ export class UsersDal{
    static async insertOne(user){
     const result = insertOne(collection,user)
     return result
+   }
+
+   static async selectByid(id){
+      const result = await selectOneId(collection,id)
+      return result
    }
 
    static async selectOneByPassword(value){

@@ -1,8 +1,7 @@
-import { getColllectionUsers,getColllectionNotes } from "./users.js"
-import { insertOne,selectOneByPassword,selectOneByUserName,updateByUserName } from "./queries.js"
+import { insertOne,selectOneByPassword,selectOneByUserName,selectAllByOwnerId,updateById,deleteById } from "./queries.js"
 import { getColllectionNotes } from "./users.js"
 
-const collection = await getColllectionNotes()
+export const collection = await getColllectionNotes()
 
 export class NotesDal{
    static async getColllectionUsers(){
@@ -30,8 +29,17 @@ export class NotesDal{
     return result
    }
 
-   static async updateByUserName(username){
-    const result = await updateByUserName(collection,username)
+   static async updateById(id,value){
+    const result = await updateById(collection,id,value)
     return result
+   }
+
+   static async selectAllByOwnerId(ownerId){
+      const result = await selectAllByOwnerId(collection,ownerId)
+      return result
+   }
+
+   static async deletById(id){
+      await deleteById(collection,id)
    }
 }

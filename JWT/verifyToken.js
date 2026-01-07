@@ -1,6 +1,5 @@
 import JWT from 'jsonwebtoken'
 import 'dotenv/config'
-import { json } from 'express'
 
 export function verifyToken(token){
     let result
@@ -12,5 +11,10 @@ export function verifyToken(token){
         }
     })
     return result
+}
+
+export function getIdUsernameByToken(token){
+    const result = verifyToken(token)
+    return {id:result.id,username:result.username}
 }
 
